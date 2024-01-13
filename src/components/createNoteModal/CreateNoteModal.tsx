@@ -8,7 +8,7 @@ const CREATE_NOTE_MODAL_ID = "create-note-modal";
 const CreateNoteModal = ({
   hideModal,
 }: {
-  hideModal: () => null;
+  hideModal: () => void;
 }): JSX.Element => {
   const { addNote } = useNotes();
 

@@ -1,6 +1,9 @@
 import { memo } from "react";
 import { FaNoteSticky } from "react-icons/fa6";
+
 import { useNotes } from "@/hooks/useNotes";
+import NoteItem from "./NoteItem";
+
 import type { Note } from "@/types/notes";
 
 const NotesList = (): JSX.Element => {
@@ -18,19 +21,7 @@ const NotesList = (): JSX.Element => {
   return (
     <div className="flex flex-row gap-4 w-full flex-wrap place-content-start">
       {notes.map((note: Note) => {
-        return (
-          <div
-            key={note.id}
-            className="h-60 w-60 rounded-md p-4 flex flex-col gap-2 shadow-xl bg-neutral"
-          >
-            <div className="text-gray-200 text-lg font-medium">
-              {note.title}
-            </div>
-            <div className="text-gray-400 overflow-hidden text-ellipsis">
-              {note.content}
-            </div>
-          </div>
-        );
+        return <NoteItem key={note.id} note={note} />;
       })}
     </div>
   );
