@@ -2,50 +2,52 @@ import { useNotes } from "@/hooks/useNotes";
 import { useState, memo, useEffect, useCallback, SyntheticEvent } from "react";
 import useKeyPressEvent from "react-use/lib/useKeyPressEvent";
 import _castArray from "lodash/castArray";
+import { Note } from "@/types/notes";
 
-const CREATE_NOTE_MODAL_ID = "create-note-modal";
+const EDIT_NOTE_MODAL_ID = "edit-note-modal";
 
-const CreateNoteModal = ({
+const EditNoteModal = ({
   hideModal,
+  note,
 }: {
   hideModal: () => void;
+  note: Note;
 }): JSX.Element => {
-  const { addNote } = useNotes();
+  const { editNote } = useNotes();
 
-  const [noteContent, setNoteContent] = useState("");
-  const [noteTitle, setNoteTitle] = useState("");
+  const [noteContent, setNoteContent] = useState(note.content[0]);
+  const [noteTitle, setNoteTitle] = useState(note.title);
 
   const handleSubmit = useCallback(
     (event: SyntheticEvent) => {
       event.preventDefault();
 
-      addNote({
+      editNote({
+        ...note,
         title: noteTitle,
         content: _castArray(noteContent),
-        createdAt: new Date().getTime(),
-        id: crypto.randomUUID(),
       });
 
       hideModal();
     },
-    [addNote, hideModal, noteContent, noteTitle]
+    [editNote, hideModal, note, noteContent, noteTitle]
   );
 
   useKeyPressEvent("Escape", hideModal);
 
   useEffect(() => {
     const modalElement = document.getElementById(
-      CREATE_NOTE_MODAL_ID
+      EDIT_NOTE_MODAL_ID
     ) as HTMLDialogElement;
 
     modalElement?.showModal();
   }, []);
 
   return (
-    <dialog id={CREATE_NOTE_MODAL_ID} className="modal">
+    <dialog id={EDIT_NOTE_MODAL_ID} className="modal">
       <div className="modal-box w-10/12 h-1/3 max-w-5xl">
         <div className="flex flex-col h-full">
-          <h3 className="font-bold text-lg">Create Note</h3>
+          <h3 className="font-bold text-lg">Edit Note</h3>
           <div className="modal-action flex-1">
             <form
               method="dialog"
@@ -86,11 +88,11 @@ const CreateNoteModal = ({
       </div>
       <label
         className="modal-backdrop"
-        htmlFor={CREATE_NOTE_MODAL_ID}
+        htmlFor={EDIT_NOTE_MODAL_ID}
         onClick={hideModal}
       />
     </dialog>
   );
 };
 
-export default memo(CreateNoteModal);
+export default memo(EditNoteModal);

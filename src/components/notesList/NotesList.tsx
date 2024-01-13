@@ -2,7 +2,7 @@ import { memo } from "react";
 import { FaNoteSticky } from "react-icons/fa6";
 
 import { useNotes } from "@/hooks/useNotes";
-import NoteItem from "./NoteItem";
+import { NoteItem } from "@/components/noteItem";
 
 import type { Note } from "@/types/notes";
 

@@ -21,6 +21,7 @@ export default function Home() {
       <input
         type="text"
         placeholder="Take a note..."
+        value=""
         className="input input-bordered w-full max-w-2xl"
         onClick={() => toggleShowCreateNoteModal(true)}
         onChange={() => toggleShowCreateNoteModal(true)}
