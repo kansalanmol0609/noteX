@@ -25,3 +25,34 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+.quill {
+  @apply input-bordered h-full p-0 border rounded-lg;
+  border-color: var(--fallback-bc, oklch(var(--bc) / 0.2));
+}
+
+.quill:focus,
+.quill:focus-within {
+  outline: 1px solid var(--fallback-bc, oklch(var(--bc) / 0.2));
+  outline-offset: 2px;
+}
+
+.quill .ql-container.ql-snow {
+  @apply border-0;
+}
+
+.quill .ql-snow.ql-toolbar {
+  @apply border-0 border-b-2 input-bordered;
+}
+
+.quill .ql-snow.ql-toolbar button {
+  @apply btn-ghost rounded-full;
+}
+
+.ql-editor {
+  @apply min-h-80;
+}
+
+.quill .ql-editor.ql-blank::before {
+  @apply text-gray-400 not-italic text-sm;
+}

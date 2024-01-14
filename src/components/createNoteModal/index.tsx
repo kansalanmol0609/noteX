@@ -1,1 +1,5 @@
-export { default as CreateNoteModal } from "./CreateNoteModal";
+import dynamic from "next/dynamic";
+
+export const CreateNoteModal = dynamic(() => import("./CreateNoteModal"), {
+  ssr: false,
+});

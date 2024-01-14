@@ -24,7 +24,7 @@ const NoteItem = ({ note }: { note: Note }): JSX.Element => {
               {note.title}
             </div>
             <div className="text-gray-400 overflow-hidden text-ellipsis">
-              {note.content}
+              <div dangerouslySetInnerHTML={{ __html: note.content }} />
             </div>
           </div>
           <div

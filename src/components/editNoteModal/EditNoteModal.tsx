@@ -3,6 +3,7 @@ import { useState, memo, useEffect, useCallback, SyntheticEvent } from "react";
 import useKeyPressEvent from "react-use/lib/useKeyPressEvent";
 import _castArray from "lodash/castArray";
 import { Note } from "@/types/notes";
+import { RichTextEditor } from "../richTextEditor";
 
 const EDIT_NOTE_MODAL_ID = "edit-note-modal";
 
@@ -15,7 +16,7 @@ const EditNoteModal = ({
 }): JSX.Element => {
   const { editNote } = useNotes();
 
-  const [noteContent, setNoteContent] = useState(note.content[0]);
+  const [noteContent, setNoteContent] = useState(note.content);
   const [noteTitle, setNoteTitle] = useState(note.title);
 
   const handleSubmit = useCallback(
@@ -25,7 +26,7 @@ const EditNoteModal = ({
       editNote({
         ...note,
         title: noteTitle,
-        content: _castArray(noteContent),
+        content: noteContent,
       });
 
       hideModal();
@@ -45,7 +46,7 @@ const EditNoteModal = ({
 
   return (
     <dialog id={EDIT_NOTE_MODAL_ID} className="modal">
-      <div className="modal-box w-10/12 h-1/3 max-w-5xl">
+      <div className="modal-box w-10/12 h-1/2 max-w-5xl">
         <div className="flex flex-col h-full">
           <h3 className="font-bold text-lg">Edit Note</h3>
           <div className="modal-action flex-1">
@@ -62,12 +63,11 @@ const EditNoteModal = ({
                   value={noteTitle}
                   onChange={(e) => setNoteTitle(e.target.value)}
                 />
-                <textarea
-                  placeholder="Take a note..."
-                  className="textarea textarea-bordered textarea-md w-full"
+                <RichTextEditor
                   value={noteContent}
-                  rows={5}
-                  onChange={(e) => setNoteContent(e.target.value)}
+                  handleValueChange={(nextValue: string) =>
+                    setNoteContent(nextValue)
+                  }
                 />
               </div>
               <div className="flex flex-row gap-4 justify-end">
