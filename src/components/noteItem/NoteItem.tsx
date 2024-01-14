@@ -1,5 +1,6 @@
 import { memo } from "react";
 import { MdDelete, MdModeEditOutline } from "react-icons/md";
+import { CgArrowsExpandRight } from "react-icons/cg";
 import { useHover } from "@/hooks/useHover";
 import { WrapWithActionsHandler } from "./wrapWithActionsHandler";
 import type { Note } from "@/types/notes";
@@ -28,21 +29,30 @@ const NoteItem = ({ note }: { note: Note }): JSX.Element => {
             </div>
           </div>
           <div
-            className={`flex flex-row gap-2 transition-opacity ${
+            className={`flex flex-row justify-between transition-opacity ${
               isHovering ? "opacity-100" : "opacity-0"
             }`}
           >
-            <div className="tooltip" data-tip="Edit">
-              <MdModeEditOutline
-                className="text-4xl p-2 btn-ghost rounded-full hover:cursor-pointer"
-                onClick={actionsHandlers[ACTION_TYPES.EDIT]}
-              />
+            <div className="flex flex-row gap-2">
+              <div className="tooltip" data-tip="Edit">
+                <MdModeEditOutline
+                  className="text-4xl p-2 btn-ghost rounded-full hover:cursor-pointer"
+                  onClick={actionsHandlers[ACTION_TYPES.EDIT]}
+                />
+              </div>
+
+              <div className="tooltip" data-tip="Delete">
+                <MdDelete
+                  className="text-4xl p-2 btn-ghost rounded-full hover:cursor-pointer"
+                  onClick={actionsHandlers[ACTION_TYPES.DELETE]}
+                />
+              </div>
             </div>
 
-            <div className="tooltip" data-tip="Delete">
-              <MdDelete
+            <div className="tooltip" data-tip="Expand">
+              <CgArrowsExpandRight
                 className="text-4xl p-2 btn-ghost rounded-full hover:cursor-pointer"
-                onClick={actionsHandlers[ACTION_TYPES.DELETE]}
+                onClick={actionsHandlers[ACTION_TYPES.VIEW]}
               />
             </div>
           </div>

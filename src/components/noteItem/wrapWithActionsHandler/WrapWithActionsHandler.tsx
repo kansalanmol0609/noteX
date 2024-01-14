@@ -8,6 +8,7 @@ import {
   OVERLAY_TYPES,
 } from "./types";
 import type { Note } from "@/types/notes";
+import { ViewNoteModal } from "@/components/viewNoteModal";
 
 const WrapWithActionsHandler = ({
   children,
@@ -39,6 +40,15 @@ const WrapWithActionsHandler = ({
             note,
           },
         }),
+
+      [ACTION_TYPES.VIEW]: () =>
+        setOverlayState({
+          type: OVERLAY_TYPES.VIEW_NOTE,
+          props: {
+            hideModal: hideOverlay,
+            note,
+          },
+        }),
     }),
     [hideOverlay, note]
   );
@@ -53,6 +63,10 @@ const WrapWithActionsHandler = ({
 
       {overlayState?.type === OVERLAY_TYPES.DELETE_NOTE ? (
         <DeleteNoteModal {...overlayState.props} />
+      ) : null}
+
+      {overlayState?.type === OVERLAY_TYPES.VIEW_NOTE ? (
+        <ViewNoteModal {...overlayState.props} />
       ) : null}
     </>
   );
