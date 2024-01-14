@@ -5,54 +5,56 @@ import ImageResize from "quill-image-resize-module-react";
 import "react-quill/dist/quill.snow.css";
 
 const QUILL_MODULES = {
-  toolbar: [
-    ["bold", "italic", "underline", "strike", "blockquote"],
-    [
-      { list: "ordered" },
-      { list: "bullet" },
-      { indent: "-1" },
-      { indent: "+1" },
-    ],
-    ["link", "image"],
-    ["clean"],
-  ],
-  imageResize: {
-    parchment: Quill.import("parchment"),
-    modules: ["Resize", "DisplaySize"],
-  },
+	toolbar: [
+		[{ header: [1, 2, false] }],
+		["bold", "italic", "underline", "strike", "blockquote"],
+		[
+			{ list: "ordered" },
+			{ list: "bullet" },
+			{ indent: "-1" },
+			{ indent: "+1" },
+		],
+		["link", "image"],
+		["clean"],
+	],
+	imageResize: {
+		parchment: Quill.import("parchment"),
+		modules: ["Resize", "DisplaySize"],
+	},
 };
 
 const QUILL_FORMATS = [
-  "bold",
-  "italic",
-  "underline",
-  "strike",
-  "blockquote",
-  "list",
-  "bullet",
-  "indent",
-  "link",
-  "image",
+	"header",
+	"bold",
+	"italic",
+	"underline",
+	"strike",
+	"blockquote",
+	"list",
+	"bullet",
+	"indent",
+	"link",
+	"image",
 ];
 
 Quill.register("modules/imageResize", ImageResize);
 
 const RichTextEditor = ({
-  value,
-  handleValueChange,
+	value,
+	handleValueChange,
 }: {
-  value: string;
-  handleValueChange: (value: string) => void;
+	value: string;
+	handleValueChange: (value: string) => void;
 }): JSX.Element => {
-  return (
-    <ReactQuill
-      modules={QUILL_MODULES}
-      formats={QUILL_FORMATS}
-      value={value}
-      onChange={handleValueChange}
-      placeholder="Add Note..."
-    />
-  );
+	return (
+		<ReactQuill
+			modules={QUILL_MODULES}
+			formats={QUILL_FORMATS}
+			value={value}
+			onChange={handleValueChange}
+			placeholder='Add Note...'
+		/>
+	);
 };
 
 export default memo(RichTextEditor);
