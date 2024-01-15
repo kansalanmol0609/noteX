@@ -8,7 +8,7 @@ import {
     ACTION_TYPES,
     type ActionsHandler,
 } from './wrapWithActionsHandler/types'
-import { serializeToHtml } from '@/components/richTextEditor/serializer'
+import { serializeToHtml } from '@/components/richTextEditor/utils/serializer'
 
 const NoteItem = ({ note }: { note: Note }): JSX.Element => {
     const [hoverHandlers, isHovering] = useHover()

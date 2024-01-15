@@ -3,7 +3,7 @@ import useKeyPressEvent from 'react-use/lib/useKeyPressEvent'
 import _castArray from 'lodash/castArray'
 import { Note } from '@/types/notes'
 import { MdCloseFullscreen } from 'react-icons/md'
-import { serializeToHtml } from '@/components/richTextEditor/serializer'
+import { serializeToHtml } from '@/components/richTextEditor/utils/serializer'
 
 const VIEW_NOTE_MODAL_ID = 'view-note-modal'
 

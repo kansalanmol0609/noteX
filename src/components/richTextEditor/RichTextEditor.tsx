@@ -12,7 +12,7 @@ import {
 import { Editor, Transforms, createEditor, Descendant } from 'slate'
 import { withHistory } from 'slate-history'
 
-import { toggleMark } from './utils'
+import { toggleMark } from './utils/toggleMark'
 import { Toolbar } from './components/Toolbar'
 import { Element } from './components/Element'
 import { Leaf } from './components/Leaf'

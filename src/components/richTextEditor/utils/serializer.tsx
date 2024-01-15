@@ -2,7 +2,7 @@
 
 import escapeHtml from 'escape-html'
 import { Text } from 'slate'
-import { Node, ELEMENT_TYPES } from './types'
+import { Node, ELEMENT_TYPES } from '../types'
 
 // Recursive function - recurses on children
 const serialize = (node: Node): string => {

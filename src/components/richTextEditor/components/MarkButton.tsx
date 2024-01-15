@@ -1,6 +1,7 @@
 import { useSlate } from 'slate-react'
 import { IconType } from 'react-icons'
-import { isMarkActive, toggleMark } from '../utils'
+import { isMarkActive } from '../utils/isMarkActive'
+import { toggleMark } from '../utils/toggleMark'
 import { ELEMENT_TYPES } from '../types'
 
 export const MarkButton = ({

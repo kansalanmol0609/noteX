@@ -1,6 +1,7 @@
 import { useSlate } from 'slate-react'
 import { IconType } from 'react-icons'
-import { isBlockActive, toggleBlock } from '../utils'
+import { isBlockActive } from '../utils/isBlockActive'
+import { toggleBlock } from '../utils/toggleBlock'
 import { ELEMENT_TYPES } from '../types'
 
 export const BlockButton = ({

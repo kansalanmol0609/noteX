@@ -10,3 +10,5 @@ export const EmptyDocument: Array<Node> = [
         ],
     },
 ]
+
+export const LIST_TYPES = ['numbered-list', 'bulleted-list']

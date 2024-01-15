@@ -2,6 +2,9 @@ import {
     RenderElementProps as BaseRenderElementProps,
     RenderLeafProps as BaseRenderLeafProps,
 } from 'slate-react'
+import { ReactEditor } from 'slate-react'
+import { Editor } from 'slate'
+import { HistoryEditor } from 'slate-history'
 
 export enum ELEMENT_TYPES {
     'block-quote' = 'block-quote',
@@ -42,3 +45,5 @@ export type Node = {
     children: any
     type?: ELEMENT_TYPES
 } & Leaf
+
+export type EditorProps = Editor | ReactEditor | HistoryEditor
