@@ -9,6 +9,8 @@
         "lint": "next lint"
     },
     "dependencies": {
+        "@types/escape-html": "^1.0.4",
+        "escape-html": "^1.0.3",
         "lodash": "^4.17.21",
         "next": "14.0.4",
         "react": "^18",
@@ -17,6 +19,7 @@
         "react-use": "^17.4.3",
         "slate": "^0.101.5",
         "slate-history": "^0.100.0",
+        "slate-hyperscript": "^0.100.0",
         "slate-react": "^0.101.5"
     },
     "devDependencies": {

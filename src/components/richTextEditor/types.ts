@@ -22,15 +22,23 @@ export type Element = {
     children: any
 }
 
+export type Leaf = {
+    bold?: boolean
+    code?: boolean
+    italic?: boolean
+    underline?: boolean
+    strikethrough?: boolean
+}
+
 export type RenderElementProps = BaseRenderElementProps & {
     element: Element
 }
 
 export type RenderLeafProps = BaseRenderLeafProps & {
-    leaf: {
-        bold?: boolean
-        code?: boolean
-        italic?: boolean
-        underline?: boolean
-    }
+    leaf: Leaf
 }
+
+export type Node = {
+    children: any
+    type?: ELEMENT_TYPES
+} & Leaf

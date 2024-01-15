@@ -1,3 +1,4 @@
+// https://github.com/nareshbhatia/react-force/blob/master/packages/slate-editor/src/deserializers/deserializeFromHtml.ts
 import { memo, useCallback, useMemo, useRef, useState } from 'react'
 import isHotkey from 'is-hotkey'
 import {
