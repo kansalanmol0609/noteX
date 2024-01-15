@@ -1,6 +1,8 @@
+import { Descendant } from 'slate'
+
 export type Note = {
-  id: string;
-  title: string;
-  content: string;
-  createdAt: number;
-};
+    id: string
+    title: string
+    content: Descendant[]
+    createdAt: number
+}

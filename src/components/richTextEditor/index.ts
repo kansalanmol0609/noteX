@@ -1,5 +1,5 @@
-import dynamic from "next/dynamic";
+import dynamic from 'next/dynamic'
 
-export const RichTextEditor = dynamic(() => import("./RichTextEditor"), {
-  ssr: false,
-});
+export const RichTextEditor = dynamic(() => import('./RichTextEditor'), {
+    ssr: false,
+})
