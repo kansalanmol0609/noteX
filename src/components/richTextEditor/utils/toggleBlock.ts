@@ -22,8 +22,8 @@ export const toggleBlock = (editor: EditorProps, format: ELEMENT_TYPES) => {
         type: isActive
             ? ELEMENT_TYPES.paragraph
             : isList
-            ? ELEMENT_TYPES['list-item']
-            : format,
+              ? ELEMENT_TYPES['list-item']
+              : format,
     }
 
     Transforms.setNodes(editor, newProperties)

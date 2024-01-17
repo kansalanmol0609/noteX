@@ -1,1 +1,1 @@
-export { default as ViewNoteModal } from "./ViewNoteModal";
+export { default as ViewNoteModal } from './ViewNoteModal'

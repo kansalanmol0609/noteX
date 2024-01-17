@@ -1,1 +1,1 @@
-export { default as EditNoteModal } from "./EditNoteModal";
+export { default as EditNoteModal } from './EditNoteModal'

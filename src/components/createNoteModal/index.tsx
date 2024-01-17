@@ -1,5 +1,5 @@
-import dynamic from "next/dynamic";
+import dynamic from 'next/dynamic'
 
-export const CreateNoteModal = dynamic(() => import("./CreateNoteModal"), {
-  ssr: false,
-});
+export const CreateNoteModal = dynamic(() => import('./CreateNoteModal'), {
+    ssr: false,
+})
