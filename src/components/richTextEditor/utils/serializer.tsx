@@ -27,15 +27,6 @@ const serialize = (node: Node): string => {
         return html
     }
 
-    // if void node, stop recursion
-    // switch (node.type as ElementType) {
-    //     case 'image': {
-    //         const url = escapeHtml(node.url as string)
-    //         const alt = escapeHtml(node.alt as string)
-    //         return `<img src="${url}" alt="${alt}" class="rf-img" />`
-    //     }
-    // }
-
     // if non-leaf node, recurse on children and then process self
     const children = node.children.map((n: Node) => serialize(n)).join('')
 
@@ -60,13 +51,11 @@ const serialize = (node: Node): string => {
         case ELEMENT_TYPES['heading-two']:
             return `<h2 class="text-lg font-semibold my-2">${children}</h2>`
 
-        // case 'link': {
-        //     const url = escapeHtml(node.url as string)
-        //     const targetStr = node.openInNewTab
-        //         ? 'target="_blank" rel="noopener noreferrer"'
-        //         : ''
-        //     return `<a href="${url}" ${targetStr}>${children}</a>`
-        // }
+        case ELEMENT_TYPES['link']: {
+            const url = node.url as string
+
+            return `<a href="${url}" target="_blank" class="link link-primary">${children}</a>`
+        }
 
         case ELEMENT_TYPES['paragraph']:
             return `<p>${children}</p>`

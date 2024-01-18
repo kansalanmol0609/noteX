@@ -1,6 +1,6 @@
 // https://github.com/nareshbhatia/react-force/blob/master/packages/slate-editor/src/deserializers/deserializeFromHtml.ts
 import { memo, useCallback, useMemo, useRef, useState } from 'react'
-import isHotkey from 'is-hotkey'
+import isHotkey, { isKeyHotkey } from 'is-hotkey'
 import {
     Editable,
     withReact,
@@ -9,13 +9,15 @@ import {
     RenderElementProps as BaseRenderElementProps,
     RenderPlaceholderProps,
 } from 'slate-react'
-import { Editor, Transforms, createEditor, Descendant } from 'slate'
+import { Editor, Transforms, createEditor, Descendant, Range } from 'slate'
 import { withHistory } from 'slate-history'
 
 import { toggleMark } from './utils/toggleMark'
-import { Toolbar } from './components/Toolbar'
-import { Element } from './components/Element'
+import { Toolbar } from './components/toolbar'
+import { Element } from './components/element'
 import { Leaf } from './components/Leaf'
+
+import withLinks from './plugins/withLinks'
 
 import { ELEMENT_TYPES, RenderElementProps, RenderLeafProps } from './types'
 
@@ -51,7 +53,10 @@ const RichTextEditor = ({
         []
     )
 
-    const editor = useMemo(() => withHistory(withReact(createEditor())), [])
+    const editor = useMemo(
+        () => withHistory(withLinks(withReact(createEditor()))),
+        []
+    )
 
     //focus selection
     const [focused, setFocused] = useState(false)
@@ -91,6 +96,30 @@ const RichTextEditor = ({
                 event.preventDefault()
                 const mark = HOTKEYS[hotkey]
                 toggleMark(editor, mark)
+            }
+        }
+
+        const { selection } = editor
+
+        // Default left/right behavior is unit:'character'.
+        // This fails to distinguish between two cursor positions, such as
+        // <inline>foo<cursor/></inline> vs <inline>foo</inline><cursor/>.
+        // Here we modify the behavior to unit:'offset'.
+        // This lets the user step into and out of the inline without stepping over characters.
+        // You may wish to customize this further to only use unit:'offset' in specific cases.
+        if (selection && Range.isCollapsed(selection)) {
+            const { nativeEvent } = event
+
+            if (isKeyHotkey('left', nativeEvent)) {
+                event.preventDefault()
+                Transforms.move(editor, { unit: 'offset', reverse: true })
+                return
+            }
+
+            if (isKeyHotkey('right', nativeEvent)) {
+                event.preventDefault()
+                Transforms.move(editor, { unit: 'offset' })
+                return
             }
         }
     }

@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import {
     MdCode,
     MdFormatBold,
@@ -8,12 +9,14 @@ import {
     MdFormatUnderlined,
     MdLooksOne,
     MdLooksTwo,
+    MdInsertLink,
+    MdLinkOff,
 } from 'react-icons/md'
-import { MarkButton } from './MarkButton'
-import { BlockButton } from './BlockButton'
-import { ELEMENT_TYPES } from '../types'
+import { MarkButton } from '../MarkButton'
+import { BlockButton } from '../BlockButton'
+import { ELEMENT_TYPES } from '../../types'
 
-export const Toolbar = () => {
+const Toolbar = () => {
     return (
         <div className="flex flex-row justify-start items-center gap-2 border-b input-bordered p-2 flex-wrap">
             <MarkButton format={ELEMENT_TYPES.bold} icon={MdFormatBold} />
@@ -23,6 +26,11 @@ export const Toolbar = () => {
                 icon={MdFormatUnderlined}
             />
             <MarkButton format={ELEMENT_TYPES.code} icon={MdCode} />
+            <BlockButton format={ELEMENT_TYPES.link} icon={MdInsertLink} />
+            <BlockButton
+                format={ELEMENT_TYPES['remove-link']}
+                icon={MdLinkOff}
+            />
             <BlockButton
                 format={ELEMENT_TYPES['heading-one']}
                 icon={MdLooksOne}
@@ -46,3 +54,5 @@ export const Toolbar = () => {
         </div>
     )
 }
+
+export default memo(Toolbar)

@@ -1,7 +1,7 @@
 import { Element, Node, Text } from 'slate'
 import { jsx } from 'slate-hyperscript'
-import { EmptyDocument } from './constants'
-import { ELEMENT_TYPES } from './types'
+import { EmptyDocument } from '../constants'
+import { ELEMENT_TYPES } from '../types'
 
 const ELEMENT_TAGS: { [key: string]: (el: any) => any } = {
     BLOCKQUOTE: () => ({ type: ELEMENT_TYPES['block-quote'] }),

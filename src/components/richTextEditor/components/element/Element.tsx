@@ -1,10 +1,11 @@
-import { RenderElementProps, ELEMENT_TYPES } from '../types'
+import { memo } from 'react'
 
-export const Element = ({
-    attributes,
-    children,
-    element,
-}: RenderElementProps) => {
+import { LinkElement } from './components/LinkElement'
+import { RenderElementProps, ELEMENT_TYPES } from '../../types'
+
+const Element = (props: RenderElementProps) => {
+    const { attributes, children, element } = props
+
     switch (element.type) {
         case ELEMENT_TYPES['block-quote']:
             return (
@@ -46,7 +47,12 @@ export const Element = ({
                 </h2>
             )
 
+        case ELEMENT_TYPES['link']:
+            return <LinkElement {...props} />
+
         default:
             return <p {...attributes}>{children}</p>
     }
 }
+
+export default memo(Element)

@@ -18,11 +18,14 @@ export enum ELEMENT_TYPES {
     'italic' = 'italic',
     'underline' = 'underline',
     'code' = 'code',
+    'link' = 'link',
+    'remove-link' = 'remove-link',
 }
 
 export type Element = {
     type: ELEMENT_TYPES
     children: any
+    url?: string
 }
 
 export type Leaf = {
@@ -44,6 +47,7 @@ export type RenderLeafProps = BaseRenderLeafProps & {
 export type Node = {
     children: any
     type?: ELEMENT_TYPES
+    url?: string
 } & Leaf
 
 export type EditorProps = Editor | ReactEditor | HistoryEditor
