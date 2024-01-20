@@ -20,13 +20,22 @@ export enum ELEMENT_TYPES {
     'code' = 'code',
     'link' = 'link',
     'remove-link' = 'remove-link',
+    'image' = 'image',
 }
 
-export type Element = {
-    type: ELEMENT_TYPES
+export type ImageElementType = {
+    type: ELEMENT_TYPES.image
+    url: string
     children: any
-    url?: string
 }
+
+export type Element =
+    | {
+          type: ELEMENT_TYPES
+          children: any
+          url?: string
+      }
+    | ImageElementType
 
 export type Leaf = {
     bold?: boolean

@@ -1,6 +1,7 @@
 import { memo } from 'react'
 
 import { LinkElement } from './components/LinkElement'
+import ImageElement from './components/ImageElement'
 import { RenderElementProps, ELEMENT_TYPES } from '../../types'
 
 const Element = (props: RenderElementProps) => {
@@ -49,6 +50,9 @@ const Element = (props: RenderElementProps) => {
 
         case ELEMENT_TYPES['link']:
             return <LinkElement {...props} />
+
+        case ELEMENT_TYPES['image']:
+            return <ImageElement {...props} />
 
         default:
             return <p {...attributes}>{children}</p>

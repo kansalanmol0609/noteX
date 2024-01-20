@@ -8,6 +8,7 @@ import {
 import { ELEMENT_TYPES, Element as ElementType, EditorProps } from '../types'
 import { LIST_TYPES } from '../constants'
 import { isBlockActive } from './isBlockActive'
+import { insertImage } from './image'
 
 const isLinkActive = (editor: EditorProps) => {
     //@ts-ignore
@@ -61,6 +62,14 @@ const insertLink = (editor: EditorProps, url: string) => {
 }
 
 export const toggleBlock = (editor: EditorProps, format: ELEMENT_TYPES) => {
+    if (format === ELEMENT_TYPES.image) {
+        const url = prompt('Enter an Image URL')
+
+        if (!url) return
+
+        return insertImage(editor, url)
+    }
+
     if (format === ELEMENT_TYPES.link) {
         const url = window.prompt('Enter the URL of the link:')
         if (!url) return

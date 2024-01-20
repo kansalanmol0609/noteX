@@ -12,6 +12,8 @@
     "dependencies": {
         "@types/escape-html": "^1.0.4",
         "escape-html": "^1.0.3",
+        "image-extensions": "^1.1.0",
+        "is-url": "^1.2.4",
         "lodash": "^4.17.21",
         "next": "14.0.4",
         "react": "^18",
@@ -24,6 +26,7 @@
         "slate-react": "^0.101.5"
     },
     "devDependencies": {
+        "@types/is-url": "^1.2.32",
         "@types/lodash": "^4.14.202",
         "@types/node": "^20",
         "@types/react": "^18",

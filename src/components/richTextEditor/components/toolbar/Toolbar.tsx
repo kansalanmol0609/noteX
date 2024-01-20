@@ -12,6 +12,7 @@ import {
     MdInsertLink,
     MdLinkOff,
 } from 'react-icons/md'
+import { BiSolidImageAdd } from 'react-icons/bi'
 import { MarkButton } from '../MarkButton'
 import { BlockButton } from '../BlockButton'
 import { ELEMENT_TYPES } from '../../types'
@@ -50,6 +51,10 @@ const Toolbar = () => {
             <BlockButton
                 format={ELEMENT_TYPES['bulleted-list']}
                 icon={MdFormatListBulleted}
+            />
+            <BlockButton
+                format={ELEMENT_TYPES['image']}
+                icon={BiSolidImageAdd}
             />
         </div>
     )

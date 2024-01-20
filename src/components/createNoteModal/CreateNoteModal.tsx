@@ -49,7 +49,7 @@ const CreateNoteModal = ({
 
     return (
         <dialog id={CREATE_NOTE_MODAL_ID} className="modal">
-            <div className="modal-box w-10/12 max-w-5xl">
+            <div className="modal-box w-full max-w-5xl">
                 <div className="flex flex-col h-full">
                     <h3 className="font-bold text-lg">Create Note</h3>
                     <div className="modal-action flex-1">

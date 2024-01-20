@@ -18,6 +18,7 @@ import { Element } from './components/element'
 import { Leaf } from './components/Leaf'
 
 import withLinks from './plugins/withLinks'
+import withImages from './plugins/withImages'
 
 import { ELEMENT_TYPES, RenderElementProps, RenderLeafProps } from './types'
 
@@ -54,7 +55,7 @@ const RichTextEditor = ({
     )
 
     const editor = useMemo(
-        () => withHistory(withLinks(withReact(createEditor()))),
+        () => withImages(withLinks(withHistory(withReact(createEditor())))),
         []
     )
 
@@ -83,7 +84,7 @@ const RichTextEditor = ({
     const focusEditor = useCallback(
         (e: React.MouseEvent) => {
             if (e.target === divRef.current) {
-                ReactEditor.focus(editor)
+                ReactEditor.focus(editor as ReactEditor)
                 e.preventDefault()
             }
         },
@@ -151,7 +152,7 @@ const RichTextEditor = ({
             }
         >
             <Slate
-                editor={editor}
+                editor={editor as ReactEditor}
                 initialValue={initialValue}
                 onChange={handleValueChange}
             >
