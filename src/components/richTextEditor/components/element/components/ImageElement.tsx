@@ -10,7 +10,7 @@ import {
 
 import { MdDelete } from 'react-icons/md'
 
-import { ImageElementType } from '../../../types'
+import { ELEMENT_TYPES, Element, ImageElementType } from '../../../types'
 
 const ImageElement = (props: RenderElementProps) => {
     const editor = useSlateStatic()
@@ -22,7 +22,9 @@ const ImageElement = (props: RenderElementProps) => {
     return (
         <div
             {...props.attributes}
-            className="group relative flex max-w-lg flex-col my-2"
+            className={`group relative flex max-w-lg flex-col my-2 border-2 ${
+                selected ? 'border-red-400' : 'border-transparent'
+            }`}
         >
             {props.children}
             <div contentEditable={false} className="relative">
@@ -42,6 +44,15 @@ const ImageElement = (props: RenderElementProps) => {
                         className="text-3xl text-black btn-ghost btn-active rounded-full hover:cursor-pointer bg-white"
                         onMouseDown={(event) => {
                             event.preventDefault()
+
+                            const paragraph: Element = {
+                                type: ELEMENT_TYPES.paragraph,
+                                children: [{ text: '' }],
+                            }
+
+                            Transforms.insertNodes(editor, paragraph, {
+                                at: [editor.children.length],
+                            })
 
                             Transforms.removeNodes(editor, { at: path })
                         }}
