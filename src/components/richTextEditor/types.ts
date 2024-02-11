@@ -29,6 +29,11 @@ export type ImageElementType = {
     children: any
 }
 
+export type ParagraphElementType = {
+    type: ELEMENT_TYPES.paragraph
+    children: any
+}
+
 export type Element =
     | {
           type: ELEMENT_TYPES

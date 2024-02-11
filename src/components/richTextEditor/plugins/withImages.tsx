@@ -7,6 +7,7 @@ import {
     ImageElementType,
     Element as ElementType,
     ELEMENT_TYPES,
+    ParagraphElementType,
 } from '../types'
 
 const withImages = (editor: ReactEditor) => {
@@ -45,13 +46,18 @@ const withImages = (editor: ReactEditor) => {
 }
 
 const insertImage = (editor: Editor, url: string) => {
-    const image: ImageElementType = {
+    const paragraphNode: ParagraphElementType = {
+        type: ELEMENT_TYPES.paragraph,
+        children: [{ text: '' }],
+    }
+
+    const imageNode: ImageElementType = {
         type: ELEMENT_TYPES.image,
         url,
         children: [{ text: '' }],
     }
 
-    Transforms.insertNodes(editor, image)
+    Transforms.insertNodes(editor, [imageNode, paragraphNode])
 }
 
 const isImageUrl = (url: string | null): boolean => {

@@ -3,6 +3,10 @@ import { ELEMENT_TYPES, Element as ElementType } from '../types'
 import { EditorProps } from '../types'
 
 export const isBlockActive = (editor: EditorProps, format: ELEMENT_TYPES) => {
+    if (format === ELEMENT_TYPES.image) {
+        return false
+    }
+
     const nodeGen = Editor.nodes(editor, {
         //@ts-ignore
         match: (n: ElementType) =>
